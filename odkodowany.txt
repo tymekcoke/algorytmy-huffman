@@ -1,0 +1,3 @@
+Algorytmy i struktury danych - kodowanie Huffmana.
+To jest przykladowy tekst do kompresji.
+Test test test xd!
