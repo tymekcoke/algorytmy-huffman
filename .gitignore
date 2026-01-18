@@ -15,7 +15,6 @@ release.properties
 .settings/
 
 # Pliki testowe
-*.huff
 *_odkodowany.txt
 
 # System
