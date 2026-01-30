@@ -1,5 +1,5 @@
 // Węzeł drzewa Huffmana
-public class Node {
+public class Node implements Comparable<Node> {
 
     char znak; // np. 'a' lub 'b'
     int czestotliwosc; // ile razy wystepuje
@@ -14,16 +14,29 @@ public class Node {
         this.prawy = null;
     }
 
-    // Konstruktor dla węzła wewnętrznego - łączenie dwóch węzłów
+    // Konstruktor dla węzła wewnętrznego
     public Node(Node lewy, Node prawy) {
-        this.znak = '\0'; // węzeł wewnętrzny nie ma znaku
+        this.znak = '\0'; // nie ma znaku
         this.czestotliwosc = lewy.czestotliwosc + prawy.czestotliwosc;
         this.lewy = lewy;
         this.prawy = prawy;
     }
 
-    // Sprawdza czy to liść (czy ma znak)
+    // Sprawdza czy to liść
     public boolean czyLisc() {
         return lewy == null && prawy == null;
+    }
+
+    // Porównuje po częstotliwości
+    @Override
+    public int compareTo(Node inny) {
+        return this.czestotliwosc - inny.czestotliwosc;
+    }
+
+    // Wypisuje węzeł
+    @Override
+    public String toString() {
+        String wyswietlanyZnak = (znak == '\0') ? "WEZEL" : "'" + znak + "'";
+        return "[" + wyswietlanyZnak + ", freq: " + czestotliwosc + "]";
     }
 }

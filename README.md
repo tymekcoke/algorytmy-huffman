@@ -11,7 +11,7 @@ Program kompresujący pliki tekstowe algorytmem Huffmana.
 ```
 src/main/java/
 ├── Node.java              - klasa węzła drzewa
-├── PriorityQueue.java     - własna kolejka priorytetowa
+├── PriorityQueue.java     - własna kolejka priorytetowa na kopcu
 ├── HuffmanCoding.java     - algorytm kompresji/dekompresji
 └── Main.java              - program główny
 ```
@@ -20,26 +20,60 @@ src/main/java/
 
 ### Kompilacja:
 ```bash
-mvn clean compile
+javac src/main/java/*.java
 ```
 
-### Kompresja pliku:
+### Uruchomienie (menu):
 ```bash
-mvn exec:java -Dexec.args="-c plik.txt wynik.huff"
+cd src/main/java
+java Main
 ```
 
-### Dekompresja:
+### Uruchomienie (argumenty):
 ```bash
-mvn exec:java -Dexec.args="-d wynik.huff odkodowany.txt"
+cd src/main/java
+java Main -c ../../../plik.txt wynik.huff        # Kompresja
+java Main -d wynik.huff odkodowany.txt           # Dekompresja
 ```
 
-## Przykład
+## Menu programu
 
-```bash
-mvn exec:java -Dexec.args="-c przyklad.txt skompresowany.huff"
-mvn exec:java -Dexec.args="-d skompresowany.huff odkodowany.txt"
-diff przyklad.txt odkodowany.txt
-```
+Program ma 4 opcje:
+
+**1. Demo Kolejki Priorytetowej** - testowanie operacji na kolejce (Insert, Extract-Min, Build, Decrease-Priority, IsEmpty)
+
+**2. Kompresuj plik** - kompresja pliku do .huff
+
+**3. Dekompresuj plik** - dekompresja z powrotem do tekstu
+
+**4. Wyjdź**
+
+## Instrukcja
+
+### 1. Demo Kolejki Priorytetowej
+
+Jak uruchomić:
+- Uruchom program: `java Main`
+- Wybierz opcję **1**
+- Testuj operacje na kolejce:
+  - **Insert** - dodaje element do kolejki
+  - **Extract Min** - pobiera element o najmniejszym priorytecie
+  - **Build** - buduje kolejkę z listy elementów
+  - **Decrease Priority** - zmniejsza priorytet wybranego elementu
+  - **IsEmpty** - sprawdza czy kolejka jest pusta
+
+### 2. Kompresja pliku
+
+- Przygotuj plik tekstowy (np. `przyklad.txt`)
+- Wybierz opcję 2
+- Podaj nazwę pliku wejściowego
+- Podaj nazwę wyjściową (np. `wynik.huff`)
+
+### 3. Dekompresja pliku
+
+- Wybierz opcję 3
+- Podaj plik skompresowany (np. `wynik.huff`)
+- Podaj nazwę docelową (np. `odkodowany.txt`)
 
 ## Jak to działa
 
@@ -57,11 +91,12 @@ diff przyklad.txt odkodowany.txt
 
 ## Format pliku
 
-Pierwsza linia: `A:5 B:3 C:2` (słownik)
+Pierwsza linia: `a:5 b:3 c:2` (słownik)
 Reszta: zakodowane bity
 
 ## Uwagi
 
 - Własna implementacja PriorityQueue (bez gotowej z Javy)
+- Kolejka zrobiona na kopcu binarnym
 - Dla małych plików może być większy niż oryginał (bo słownik zajmuje miejsce)
 - Działa tylko dla plików tekstowych

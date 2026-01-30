@@ -1,5 +1,5 @@
 import java.io.*;
-import java.util.*;
+import java.util.HashMap;
 
 public class HuffmanCoding {
 
@@ -28,14 +28,8 @@ public class HuffmanCoding {
 
     // Krok 2: Budujemy drzewo Huffmana
     private Node zbudujDrzewo(HashMap<Character, Integer> czestotliwosc) {
-        // Kolejka - sortuje według częstotliwości
-        PriorityQueue kolejka = new PriorityQueue(
-            new Comparator<Node>() {
-                public int compare(Node a, Node b) {
-                    return a.czestotliwosc - b.czestotliwosc; // Opisanie działanie compare dla obiektów Node
-                }
-            }
-        );
+        // Kolejka - sortuje według częstotliwości (max 256 różnych znaków)
+        PriorityQueue kolejka = new PriorityQueue(256);
 
         // Wrzucamy wszystkie znaki jako liście
         for (Character znak : czestotliwosc.keySet()) {
