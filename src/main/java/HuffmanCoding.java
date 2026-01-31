@@ -28,14 +28,17 @@ public class HuffmanCoding {
 
     // Krok 2: Budujemy drzewo Huffmana
     private Node zbudujDrzewo(HashMap<Character, Integer> czestotliwosc) {
-        // Kolejka - sortuje według częstotliwości (max 256 różnych znaków)
-        PriorityQueue kolejka = new PriorityQueue(256);
-
-        // Wrzucamy wszystkie znaki jako liście
+        // Tworzymy tablicę węzłów z częstotliwościami
+        Node[] wezly = new Node[czestotliwosc.size()];
+        int i = 0;
         for (Character znak : czestotliwosc.keySet()) {
-            Node lisc = new Node(znak, czestotliwosc.get(znak));
-            kolejka.add(lisc);
+            wezly[i] = new Node(znak, czestotliwosc.get(znak));
+            i++;
         }
+
+        // Budujemy kolejkę z tablicy (algorytm Floyda - O(n))
+        PriorityQueue kolejka = new PriorityQueue(256);
+        kolejka.zbudujKolejke(wezly);
 
         // Łączymy węzły aż zostanie jeden (korzeń)
         while (kolejka.size() > 1) {
