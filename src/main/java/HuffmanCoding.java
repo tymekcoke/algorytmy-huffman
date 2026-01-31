@@ -36,7 +36,7 @@ public class HuffmanCoding {
             i++;
         }
 
-        // Budujemy kolejkę z tablicy (algorytm Floyda - O(n))
+        // Budujemy kolejkę z tablicy
         PriorityQueue kolejka = new PriorityQueue(256);
         kolejka.zbudujKolejke(wezly);
 
@@ -158,7 +158,9 @@ public class HuffmanCoding {
             FileInputStream fis = new FileInputStream(plikWejsciowy);
 
             // CZYTAMY LINIĘ 1: Słownik
-            StringBuilder slownikBuilder = new StringBuilder(); // StringBuilder bo jest szybszy - zwykły String jest niezmienny, za każdym razem jak coś dodajemy toworzy się nowy String
+            StringBuilder slownikBuilder = new StringBuilder(); // StringBuilder bo jest szybszy - zwykły String jest
+                                                                // niezmienny, za każdym razem jak coś dodajemy toworzy
+                                                                // się nowy String
             int bajt; // Zmienna do przechowania kodu ASCII char'a
             // fis.read() zwróci '-1' gdy będzie koniec pliku
             // kończymy na '\n' bo tak się kończy pierwsza linia!
@@ -176,20 +178,21 @@ public class HuffmanCoding {
             while (pozycja < slownikLinia.length()) {
                 // Znajdujemy dwukropek
                 int dwukropek = slownikLinia.indexOf(':', pozycja);
-                if (dwukropek == -1) break;
+                if (dwukropek == -1)
+                    break;
 
                 // Znak to jeden znak przed dwukropkiem
                 String klucz = slownikLinia.substring(pozycja, dwukropek);
 
                 // Znajdujemy spację po liczbie (lub koniec stringa)
                 int spacja = slownikLinia.indexOf(' ', dwukropek);
-                if (spacja == -1) spacja = slownikLinia.length();
+                if (spacja == -1)
+                    spacja = slownikLinia.length();
 
                 // Liczba to wszystko między dwukropkiem a spacją
                 String wartoscStr = slownikLinia.substring(
-                    dwukropek + 1,
-                    spacja
-                );
+                        dwukropek + 1,
+                        spacja);
 
                 // Dekodujemy znak
                 char znak;
